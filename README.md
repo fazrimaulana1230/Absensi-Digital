@@ -2,8 +2,6 @@
 
 Aplikasi web untuk mencatat kehadiran siswa secara digital di Sekolah Menengah Atas (SMA). Digunakan oleh **Admin** untuk mengelola data dan melihat laporan, serta oleh **Guru** untuk mencatat absensi siswa.
 
-![Login Page](docs/login.png)
-
 ---
 
 ## 🚀 Fitur Utama
