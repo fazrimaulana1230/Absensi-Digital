@@ -1,0 +1,13 @@
+# Deny access to sensitive directories
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Deny direct access to config files
+    RewriteRule ^config/ - [F,L]
+
+    # Deny direct access to model files
+    RewriteRule ^models/ - [F,L]
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
