@@ -79,8 +79,8 @@ absensi2/
 │
 ├── views/
 │   ├── layout/
-│   │   ├── header.php            # Head HTML, CSS imports
-│   │   ├── sidebar.php           # Navigasi sidebar (role-based)
+│   │   ├── header.php            # Head HTML, CSS imports & Theme Init
+│   │   ├── sidebar.php           # Sidebar & Topbar (Theme Toggle Button)
 │   │   └── footer.php            # Script JS imports
 │   ├── auth/
 │   │   └── login.php             # Halaman login
@@ -97,9 +97,9 @@ absensi2/
 │
 ├── assets/
 │   ├── css/
-│   │   └── style.css             # Custom CSS (dark theme)
+│   │   └── style.css             # Custom CSS (Dark & Light Theme)
 │   └── js/
-│       └── app.js                # Custom JavaScript
+│       └── app.js                # Custom JavaScript (Theme Toggle Logic)
 │
 ├── database/
 │   └── absensi_digital.sql       # Script SQL lengkap + data sample
