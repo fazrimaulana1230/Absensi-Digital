@@ -912,3 +912,170 @@ a:hover {
 .quick-absensi .btn-quick.quick-izin:hover { border-color: var(--info); color: var(--info); }
 .quick-absensi .btn-quick.quick-sakit:hover { border-color: var(--warning); color: var(--warning); }
 .quick-absensi .btn-quick.quick-alpha:hover { border-color: var(--danger); color: var(--danger); }
+
+/* ================================================================
+   Theme Switcher & Light Mode
+   ================================================================ */
+
+/* Transition enhancement */
+body, .sidebar, .topbar, .stat-card, .card-dark, .sidebar-nav .nav-link, 
+.form-control-dark, .form-select-dark, .btn-action {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+/* Modern Pill Style Toggle */
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 64px;
+    margin: 0;
+}
+
+.theme-switch-input {
+    display: none;
+}
+
+.theme-switch .slider {
+    background-color: var(--bg-input);
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: 0.4s;
+    border-radius: 34px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
+    overflow: hidden;
+}
+
+.theme-switch .slider .icon-dark, 
+.theme-switch .slider .icon-light {
+    font-size: 14px;
+    z-index: 1;
+    transition: 0.4s;
+}
+
+/* Icon initial positioning (absolute) */
+.theme-switch .slider .icon-dark {
+    position: absolute;
+    right: 8px;
+    color: #94a3b8;
+}
+
+.theme-switch .slider .icon-light {
+    position: absolute;
+    left: 8px;
+    color: #f59e0b;
+}
+
+/* Base state: Dark Mode -> Thumb is on left, moon is visible on right */
+.theme-switch-input:not(:checked) + .slider .icon-dark {
+    opacity: 1;
+}
+
+.theme-switch-input:not(:checked) + .slider .icon-light {
+    opacity: 0;
+    transform: scale(0.5); /* extra flair */
+}
+
+/* The thumb */
+.theme-switch .slider:before {
+    background-color: #ffffff;
+    bottom: 3px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: 0.4s;
+    width: 26px;
+    z-index: 2;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Toggled state: Light Mode -> Thumb moves to right, sun is visible on left */
+.theme-switch-input:checked + .slider {
+    background-color: #f8fafc;
+    border-color: #cbd5f5;
+}
+
+.theme-switch-input:checked + .slider:before {
+    transform: translateX(28px);
+    background-color: #ffffff;
+}
+
+.theme-switch-input:checked + .slider .icon-dark {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.theme-switch-input:checked + .slider .icon-light {
+    opacity: 1;
+}
+
+
+/* Light Mode Overrides */
+body.light-mode {
+    --bg-dark: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --bg-sidebar: #ffffff;
+    --bg-input: #e2e8f0;
+    --border-color: #e2e8f0;
+    --border-light: #cbd5f5;
+    
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    
+    --primary: #7c3aed;
+    --primary-light: #8b5cf6;
+    --primary-dark: #5b21b6;
+    --primary-glow: rgba(124, 58, 237, 0.3);
+    
+    --accent: #2563eb;
+    --accent-light: #3b82f6;
+    
+    --success: #059669;
+    --success-light: rgba(5, 150, 105, 0.15);
+    --warning: #d97706;
+    --warning-light: rgba(217, 119, 6, 0.15);
+    --danger: #dc2626;
+    --danger-light: rgba(220, 38, 38, 0.15);
+    --info: #2563eb;
+    --info-light: rgba(37, 99, 235, 0.15);
+    
+    --gradient-primary: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+    --gradient-dark: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+}
+
+body.light-mode .card-dark,
+body.light-mode .stat-card,
+body.light-mode .login-card {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+body.light-mode .sidebar-nav .nav-link.active {
+    background: #ede9fe;
+    color: #5b21b6;
+    box-shadow: none;
+}
+
+body.light-mode .topbar {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+body.light-mode .table-dark-custom thead th {
+    background: rgba(124, 58, 237, 0.1);
+}

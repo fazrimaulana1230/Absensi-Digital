@@ -170,6 +170,27 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 50);
     });
 
+    // ================================================================
+    // Theme Switch (Dark / Light Mode)
+    // ================================================================
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        // Init toggle state from body class
+        if (document.body.classList.contains('light-mode')) {
+            themeToggle.checked = true;
+        }
+
+        themeToggle.addEventListener('change', function () {
+            if (this.checked) {
+                document.body.classList.add('light-mode');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.classList.remove('light-mode');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
+
 });
 
 // Shake animation (inject via CSS)

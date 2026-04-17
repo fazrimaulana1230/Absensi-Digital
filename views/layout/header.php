@@ -14,5 +14,11 @@
     <link href="<?= BASE_URL ?>/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
+    <script>
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "light") {
+            document.body.classList.add("light-mode");
+        }
+    </script>
     <!-- Sidebar Overlay (Mobile) -->
     <div id="sidebarOverlay" class="sidebar-overlay"></div>

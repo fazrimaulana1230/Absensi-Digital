@@ -119,9 +119,22 @@ $role = $_SESSION['role'] ?? 'guest';
             </button>
             <span class="page-title"><?= $pageTitle ?? 'Dashboard' ?></span>
         </div>
-        <div class="topbar-date">
-            <i class="bi bi-calendar3"></i>
-            <?= strftime('%A, %d %B %Y') ?: date('l, d F Y') ?>
+        <div class="d-flex align-items-center gap-3">
+            <!-- Theme Toggle -->
+            <div class="theme-switch-wrapper me-2">
+                <label class="theme-switch" for="themeToggle">
+                    <input type="checkbox" id="themeToggle" class="theme-switch-input" />
+                    <div class="slider round">
+                        <i class="bi bi-moon-stars-fill icon-dark"></i>
+                        <i class="bi bi-sun-fill icon-light"></i>
+                    </div>
+                </label>
+            </div>
+            
+            <div class="topbar-date d-none d-md-flex">
+                <i class="bi bi-calendar3"></i>
+                <?= strftime('%A, %d %B %Y') ?: date('l, d F Y') ?>
+            </div>
         </div>
     </div>
 

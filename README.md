@@ -1,6 +1,6 @@
-# 📋 Sistem Informasi Absensi Digital SMA
+# 📋 Sistem Informasi Absensi Digital SMA (V2)
 
-Aplikasi web untuk mencatat kehadiran siswa secara digital di Sekolah Menengah Atas (SMA). Digunakan oleh **Admin** untuk mengelola data dan melihat laporan, serta oleh **Guru** untuk mencatat absensi siswa.
+Aplikasi web untuk mencatat kehadiran siswa secara digital di Sekolah Menengah Atas (SMA). Digunakan oleh **Admin** untuk mengelola data dan melihat laporan, serta oleh **Guru** untuk mencatat absensi siswa. Dalam versi V2 ini, aplikasi mendapatkan pembaharuan UI dengan fitur premium Dark Mode dan Light Mode.
 
 ---
 
@@ -11,6 +11,13 @@ Aplikasi web untuk mencatat kehadiran siswa secara digital di Sekolah Menengah A
 - Password di-hash dengan **bcrypt**
 - Session-based authentication
 - Redirect otomatis berdasarkan role (Admin / Guru)
+
+### 🎨 UI/UX Enhancement (V2 Baru!)
+| Fitur | Deskripsi |
+|-------|-----------|
+| **Theme Switcher** | Fitur modern switch Dark ↔ Light Mode |
+| **Auto-save Mode** | Tema otomatis tersimpan secara persisten menggunakan localStorage |
+| **Premium Interface** | Warna tema premium dengan layout pill modern, dan efek soft drop-shadow |
 
 ### 👨‍💼 Panel Admin
 | Fitur | Deskripsi |
