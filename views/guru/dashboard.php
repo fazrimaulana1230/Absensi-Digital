@@ -144,6 +144,9 @@ include __DIR__ . '/../layout/sidebar.php';
                 <div class="card-body">
                     <?php $totalHariIni = array_sum($statsHariIni); ?>
                     <?php if ($totalHariIni > 0): ?>
+                        <div class="mb-4">
+                            <canvas id="attendanceChart" style="max-height: 200px; width: 100%;"></canvas>
+                        </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span style="font-size: 0.8rem; color: var(--text-secondary);">Hadir</span>
                             <span style="font-size: 0.8rem; font-weight: 600; color: var(--success);"><?= $statsHariIni['Hadir'] ?></span>
@@ -184,5 +187,48 @@ include __DIR__ . '/../layout/sidebar.php';
 </div>
 
 </div><!-- /.main-content -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('attendanceChart')) {
+        const textColor = getComputedStyle(document.body).getPropertyValue('--text-secondary').trim() || '#8f9ba8';
+        const ctx = document.getElementById('attendanceChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Hadir', 'Izin', 'Sakit', 'Alpha'],
+                datasets: [{
+                    data: [<?= $statsHariIni['Hadir'] ?>, <?= $statsHariIni['Izin'] ?>, <?= $statsHariIni['Sakit'] ?>, <?= $statsHariIni['Alpha'] ?>],
+                    backgroundColor: [
+                        '#10b981', // success
+                        '#3b82f6', // info
+                        '#f59e0b', // warning
+                        '#ef4444'  // danger
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: textColor,
+                            usePointStyle: true,
+                            padding: 15,
+                            font: { size: 11 }
+                        }
+                    }
+                }
+            }
+        });
+    }
+});
+</script>
 
 <?php include __DIR__ . '/../layout/footer.php'; ?>

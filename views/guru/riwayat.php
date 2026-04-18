@@ -8,12 +8,33 @@ include __DIR__ . '/../layout/sidebar.php';
 ?>
 
 <div class="content-area">
+    <?php
+    $nama_kelas_title = "Semua Kelas";
+    if ($id_kelas > 0) {
+        foreach ($kelasList as $kelas) {
+            if ($kelas['id_kelas'] == $id_kelas) {
+                $nama_kelas_title = "Kelas " . trim($kelas['nama_kelas']);
+                break;
+            }
+        }
+    }
+    ?>
     <!-- Header -->
-    <div class="mb-4 animate-in">
-        <h5 style="font-weight: 700; margin-bottom: 0.25rem;">Riwayat Absensi</h5>
-        <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0;">
-            Menampilkan <strong><?= count($riwayat) ?></strong> data absensi yang telah Anda catat
-        </p>
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2 animate-in print-header">
+        <div>
+            <h5 style="font-weight: 700; margin-bottom: 0.25rem;">Riwayat Absensi <?= htmlspecialchars($nama_kelas_title) ?></h5>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0;">
+                Periode: <?= date('d/m/Y', strtotime($tanggal_dari)) ?> - <?= date('d/m/Y', strtotime($tanggal_sampai)) ?>
+            </p>
+        </div>
+        <div class="d-flex gap-2">
+            <button class="btn btn-primary-custom no-print" onclick="window.print()">
+                <i class="bi bi-printer me-1"></i> Cetak Data
+            </button>
+            <a href="<?= BASE_URL ?>/controllers/ExportExcelController.php?<?= http_build_query($_GET) ?>" class="btn btn-success no-print">
+                <i class="bi bi-file-earmark-excel me-1"></i> Export Excel
+            </a>
+        </div>
     </div>
 
     <!-- Filter -->

@@ -9,16 +9,24 @@ include __DIR__ . '/../layout/sidebar.php';
 
 <div class="content-area">
     <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2 print-header">
         <div>
             <h5 style="font-weight: 700; margin-bottom: 0.25rem;">Data Guru</h5>
             <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0;">
                 Total: <strong><?= count($guruList) ?></strong> guru terdaftar
             </p>
         </div>
-        <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#addGuruModal">
-            <i class="bi bi-plus-lg me-1"></i> Tambah Guru
-        </button>
+        <div class="d-flex gap-2">
+            <button class="btn btn-primary-custom no-print animate-in" onclick="window.print()">
+                <i class="bi bi-printer me-1"></i> Cetak Data
+            </button>
+            <a href="<?= BASE_URL ?>/controllers/ExportExcelController.php?type=guru" class="btn btn-success no-print animate-in">
+                <i class="bi bi-file-earmark-excel me-1"></i> Export Excel
+            </a>
+            <button class="btn btn-primary-custom no-print" data-bs-toggle="modal" data-bs-target="#addGuruModal">
+                <i class="bi bi-plus-lg me-1"></i> Tambah Guru
+            </button>
+        </div>
     </div>
 
     <!-- Tabel Guru -->
@@ -32,7 +40,7 @@ include __DIR__ . '/../layout/sidebar.php';
                             <th>NIP</th>
                             <th>Nama Guru</th>
                             <th>Kelas yang Diajar</th>
-                            <th style="width: 100px; text-align: center;">Aksi</th>
+                            <th style="width: 100px; text-align: center;" class="no-print">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,7 +66,7 @@ include __DIR__ . '/../layout/sidebar.php';
                                             <span style="color: var(--text-muted); font-size: 0.8rem;">Belum diatur</span>
                                         <?php endif; ?>
                                     </td>
-                                    <td class="text-center">
+                                    <td class="text-center no-print">
                                         <button class="btn-action btn-edit" 
                                                 data-bs-toggle="modal" 
                                                 data-bs-target="#editModal"

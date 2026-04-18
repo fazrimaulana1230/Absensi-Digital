@@ -52,6 +52,21 @@ class User {
     }
 
     /**
+     * Ambil user berdasarkan ID Guru
+     * @param int $id_guru
+     * @return array|null
+     */
+    public function getByGuruId($id_guru) {
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE id_guru = ?");
+        $stmt->bind_param("i", $id_guru);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $stmt->close();
+        return $user;
+    }
+
+    /**
      * Tambah user baru
      * @param string $username
      * @param string $password Password plain text (akan di-hash)

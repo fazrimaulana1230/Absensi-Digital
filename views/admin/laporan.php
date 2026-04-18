@@ -8,17 +8,33 @@ include __DIR__ . '/../layout/sidebar.php';
 ?>
 
 <div class="content-area">
+    <?php
+    $nama_kelas_title = "Semua Kelas";
+    if ($id_kelas > 0) {
+        foreach ($kelasList as $kelas) {
+            if ($kelas['id_kelas'] == $id_kelas) {
+                $nama_kelas_title = "Kelas " . trim($kelas['nama_kelas']);
+                break;
+            }
+        }
+    }
+    ?>
     <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2 print-header">
         <div>
-            <h5 style="font-weight: 700; margin-bottom: 0.25rem;">Laporan Absensi</h5>
+            <h5 style="font-weight: 700; margin-bottom: 0.25rem;">Laporan Absensi <?= htmlspecialchars($nama_kelas_title) ?></h5>
             <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0;">
-                Menampilkan <strong><?= count($laporan) ?></strong> data absensi
+                Periode: <?= date('d/m/Y', strtotime($tanggal_dari)) ?> - <?= date('d/m/Y', strtotime($tanggal_sampai)) ?>
             </p>
         </div>
-        <button class="btn btn-primary-custom no-print" onclick="window.print()">
-            <i class="bi bi-printer me-1"></i> Cetak Laporan
-        </button>
+        <div class="d-flex gap-2">
+            <a href="<?= BASE_URL ?>/controllers/ExportExcelController.php?<?= http_build_query($_GET) ?>" class="btn btn-success no-print">
+                <i class="bi bi-file-earmark-excel me-1"></i> Export Excel
+            </a>
+            <button class="btn btn-primary-custom no-print" onclick="window.print()">
+                <i class="bi bi-printer me-1"></i> Cetak Laporan
+            </button>
+        </div>
     </div>
 
     <!-- Filter -->

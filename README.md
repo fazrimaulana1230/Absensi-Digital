@@ -1,32 +1,38 @@
-# 📋 Sistem Informasi Absensi Digital SMA (V2)
+# 📋 Sistem Informasi Absensi Digital SMA
 
-Aplikasi web untuk mencatat kehadiran siswa secara digital di Sekolah Menengah Atas (SMA). Digunakan oleh **Admin** untuk mengelola data dan melihat laporan, serta oleh **Guru** untuk mencatat absensi siswa. Dalam versi V2 ini, aplikasi mendapatkan pembaharuan UI dengan fitur premium Dark Mode dan Light Mode.
+Aplikasi web untuk mencatat kehadiran siswa secara digital di Sekolah Menengah Atas (SMA). Digunakan oleh **Admin** untuk mengelola data dan melihat laporan, serta oleh **Guru** untuk mencatat absensi siswa.
 
 ---
 
-## 🚀 Fitur Utama
+## 📜 Changelog
 
-### 🔐 Autentikasi
-- Login dengan username & password
-- Password di-hash dengan **bcrypt**
-- Session-based authentication
-- Redirect otomatis berdasarkan role (Admin / Guru)
+### v3.0.0 - Analytics & Export Update
+- **Export Excel Native**: Fitur unduh laporan absensi, riwayat kehadiran, data guru, & siswa (`.xls`) tanpa library (*Zero Dependency*).
+- **Cetak PDF/Print Responsive**: Styling khusus media-print yang responsif (menyembunyikan tabel aksi, form input) untuk laporan tercetak yang rapi.
+- **Dashboard Chart.js**: Visualisasi rekap absensi interaktif menggunakan grafik *Doughnut* di panel *Dashboard* Admin maupun Guru.
 
-### 🎨 UI/UX Enhancement (V2 Baru!)
-| Fitur | Deskripsi |
-|-------|-----------|
-| **Theme Switcher** | Fitur modern switch Dark ↔ Light Mode |
-| **Auto-save Mode** | Tema otomatis tersimpan secara persisten menggunakan localStorage |
-| **Premium Interface** | Warna tema premium dengan layout pill modern, dan efek soft drop-shadow |
+### v2.0.0 - UI/UX Refactor
+- **Dark / Light Mode Toggle**: Switch tema dinamis dengan auto-save persisten menggunakan `localStorage`.
+- **Premium Interface**: Redesign antarmuka dengan elemen glassmorphism, efek soft shadow, & layout pill modern.
+
+### v1.0.0 - Initial Release
+- **Sistem Autentikasi Dasar**: Login Admin & Guru terpisah.
+- **Manajemen CRUD**: Kelola Data Siswa, Guru, dan Kelas.
+- **Input Absensi**: Form pencatatan kehadiran oleh Guru.
+- **Laporan Sederhana**: Tabel riwayat.
+
+---
+
+## 🚀 Gambaran Fitur Aplikasi
 
 ### 👨‍💼 Panel Admin
 | Fitur | Deskripsi |
 |-------|-----------|
-| **Dashboard** | Statistik total siswa, guru, kelas, dan absensi hari ini |
+| **Dashboard** | Statistik dan grafik Chart.js interaktif total siswa, guru, kelas, dan absensi hari ini |
 | **CRUD Siswa** | Tambah, edit, hapus data siswa (nama, NIS, kelas) |
 | **CRUD Guru** | Tambah guru + buat akun login otomatis, edit, hapus, assign kelas |
 | **CRUD Kelas** | Tambah, edit, hapus data kelas |
-| **Laporan Absensi** | Filter berdasarkan tanggal, kelas, siswa + cetak / print |
+| **Laporan Absensi** | Filter laporan absensi komprehensif lengkap fitur ekspor Excel dan Print/PDF |
 
 ### 👨‍🏫 Panel Guru
 | Fitur | Deskripsi |

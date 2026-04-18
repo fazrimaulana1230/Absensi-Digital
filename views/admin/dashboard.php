@@ -71,45 +71,28 @@ include __DIR__ . '/../layout/sidebar.php';
                     $totalHariIni = array_sum($statsHariIni);
                     if ($totalHariIni > 0):
                     ?>
-                    <div class="row g-3">
-                        <div class="col-6 col-md-3 text-center">
-                            <div style="font-size: 2rem; font-weight: 800; color: var(--success);">
-                                <?= $statsHariIni['Hadir'] ?>
-                            </div>
-                            <div style="font-size: 0.8rem; color: var(--text-secondary);">Hadir</div>
-                            <div class="progress mt-2" style="height: 4px; background: var(--bg-input);">
-                                <div class="progress-bar" role="progressbar" 
-                                     style="width: <?= round($statsHariIni['Hadir']/$totalHariIni*100) ?>%; background: var(--success);"></div>
-                            </div>
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-6">
+                            <canvas id="attendanceChart" style="max-height: 220px; width: 100%;"></canvas>
                         </div>
-                        <div class="col-6 col-md-3 text-center">
-                            <div style="font-size: 2rem; font-weight: 800; color: var(--info);">
-                                <?= $statsHariIni['Izin'] ?>
-                            </div>
-                            <div style="font-size: 0.8rem; color: var(--text-secondary);">Izin</div>
-                            <div class="progress mt-2" style="height: 4px; background: var(--bg-input);">
-                                <div class="progress-bar" role="progressbar" 
-                                     style="width: <?= round($statsHariIni['Izin']/$totalHariIni*100) ?>%; background: var(--info);"></div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-3 text-center">
-                            <div style="font-size: 2rem; font-weight: 800; color: var(--warning);">
-                                <?= $statsHariIni['Sakit'] ?>
-                            </div>
-                            <div style="font-size: 0.8rem; color: var(--text-secondary);">Sakit</div>
-                            <div class="progress mt-2" style="height: 4px; background: var(--bg-input);">
-                                <div class="progress-bar" role="progressbar" 
-                                     style="width: <?= round($statsHariIni['Sakit']/$totalHariIni*100) ?>%; background: var(--warning);"></div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-3 text-center">
-                            <div style="font-size: 2rem; font-weight: 800; color: var(--danger);">
-                                <?= $statsHariIni['Alpha'] ?>
-                            </div>
-                            <div style="font-size: 0.8rem; color: var(--text-secondary);">Alpha</div>
-                            <div class="progress mt-2" style="height: 4px; background: var(--bg-input);">
-                                <div class="progress-bar" role="progressbar" 
-                                     style="width: <?= round($statsHariIni['Alpha']/$totalHariIni*100) ?>%; background: var(--danger);"></div>
+                        <div class="col-md-6">
+                            <div class="row g-3">
+                                <div class="col-6 text-center">
+                                    <div style="font-size: 2rem; font-weight: 800; color: var(--success);"><?= $statsHariIni['Hadir'] ?></div>
+                                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Hadir</div>
+                                </div>
+                                <div class="col-6 text-center">
+                                    <div style="font-size: 2rem; font-weight: 800; color: var(--info);"><?= $statsHariIni['Izin'] ?></div>
+                                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Izin</div>
+                                </div>
+                                <div class="col-6 text-center">
+                                    <div style="font-size: 2rem; font-weight: 800; color: var(--warning);"><?= $statsHariIni['Sakit'] ?></div>
+                                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Sakit</div>
+                                </div>
+                                <div class="col-6 text-center">
+                                    <div style="font-size: 2rem; font-weight: 800; color: var(--danger);"><?= $statsHariIni['Alpha'] ?></div>
+                                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Alpha</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -177,5 +160,48 @@ include __DIR__ . '/../layout/sidebar.php';
 </div>
 
 </div><!-- /.main-content -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('attendanceChart')) {
+        const textColor = getComputedStyle(document.body).getPropertyValue('--text-secondary').trim() || '#8f9ba8';
+        const ctx = document.getElementById('attendanceChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Hadir', 'Izin', 'Sakit', 'Alpha'],
+                datasets: [{
+                    data: [<?= $statsHariIni['Hadir'] ?>, <?= $statsHariIni['Izin'] ?>, <?= $statsHariIni['Sakit'] ?>, <?= $statsHariIni['Alpha'] ?>],
+                    backgroundColor: [
+                        '#10b981', // success
+                        '#3b82f6', // info
+                        '#f59e0b', // warning
+                        '#ef4444'  // danger
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: textColor,
+                            usePointStyle: true,
+                            padding: 15,
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+    }
+});
+</script>
 
 <?php include __DIR__ . '/../layout/footer.php'; ?>

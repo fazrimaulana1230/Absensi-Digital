@@ -170,17 +170,13 @@ a:hover {
 }
 
 .login-logo .logo-icon {
-    width: 70px;
-    height: 70px;
-    background: var(--gradient-primary);
-    border-radius: 20px;
+    width: 80px;
+    height: 80px;
+    background: transparent;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
-    animation: pulse-glow 3s ease-in-out infinite;
+    margin-bottom: 0.5rem;
 }
 
 @keyframes pulse-glow {
@@ -229,12 +225,10 @@ a:hover {
 .sidebar-brand .brand-icon {
     width: 42px;
     height: 42px;
-    background: var(--gradient-primary);
-    border-radius: 12px;
+    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
     flex-shrink: 0;
 }
 
@@ -741,6 +735,17 @@ a:hover {
 
     .main-content {
         margin-left: 0 !important;
+    }
+
+    .print-header {
+        display: block !important;
+        text-align: center !important;
+        width: 100% !important;
+    }
+    
+    .print-header div {
+        text-align: center !important;
+        width: 100% !important;
     }
 
     body {

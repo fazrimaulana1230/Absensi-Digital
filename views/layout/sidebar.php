@@ -11,7 +11,9 @@ $role = $_SESSION['role'] ?? 'guest';
 <nav id="sidebar" class="sidebar">
     <!-- Brand -->
     <div class="sidebar-brand">
-        <div class="brand-icon">📋</div>
+        <div class="brand-icon" style="background: transparent; box-shadow: none; padding: 0;">
+            <img src="<?= BASE_URL ?>/assets/img/logo.png" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
         <div>
             <h5>Absensi Digital</h5>
             <small>SMA Nusantara</small>
